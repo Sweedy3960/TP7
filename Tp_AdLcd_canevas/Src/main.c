@@ -53,7 +53,8 @@
 
 /* USER CODE BEGIN PV */
 uint16_t valVref_mV=0;
-
+e_States  state;
+e_States *pt_state =  &state;
 
 /* USER CODE END PV */
 
@@ -102,12 +103,25 @@ uint16_t Adc_read(uint8_t chNr)
 	//HAL_ADC_Stop(&hadc);
 }
 
-e_States readStatus(e_States _statusActuel)
+/*
+void setStatus(void)
 {
-		
+
+	switch (*pt_state)
+	{
+		case INIT:
+			*pt_state = EXEC;
+			break;
+		case EXEC:
+			*pt_state = IDLE;
+			break;
+		case IDLE:
+			break;
+	  default:
+			break;
+	}
 }
-
-
+*/
 // ----------------------------------------------------------------
 
 
@@ -122,9 +136,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	//variables
 	static uint16_t ValueReadAdc = 0;
-	e_States  state;
 	state = INIT;
-	e_States *pt_state =  &state;
+	
 	
 	// *** A COMPLETER ! ***
 	
@@ -156,6 +169,7 @@ int main(void)
   MX_ADC_Init();
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Base_Start_IT(&htim6);
+	lcd_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -175,7 +189,6 @@ int main(void)
 				lcd_gotoxy(1,2);
 				printf_lcd("Clauzel aymeric");
 				lcd_bl_on();
-				
 			
 				
 				break;
@@ -187,7 +200,7 @@ int main(void)
 				break;
 		}
 		//Adc_read(0);
-		//ValueReadAdc = HAL_ADC_GetValue(&hadc);
+		ValueReadAdc = HAL_ADC_GetValue(&hadc);
 	//	ValueReadAdc= DR;
 		
 		// *** A COMPLETER ! ***

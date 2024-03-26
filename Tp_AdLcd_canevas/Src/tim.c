@@ -19,7 +19,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "tim.h"
-#include "main.h"
+#include "stm32f0xx_hal_tim.h"
+
 /* USER CODE BEGIN 0 */
  
 
@@ -72,8 +73,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
 
 void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 {
-	static uint16_t cntTime;
- 
+
   if(tim_baseHandle->Instance==TIM6)
   {
   /* USER CODE BEGIN TIM6_MspDeInit 0 */
@@ -89,11 +89,6 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* tim_baseHandle)
 		
   /* USER CODE END TIM6_MspDeInit 1 */
   }
-	cntTime++;
-	if (cntTime > _3SEC)
-	{
-				readStatus(EXEC);
-	}
 }
 
 /* USER CODE BEGIN 1 */

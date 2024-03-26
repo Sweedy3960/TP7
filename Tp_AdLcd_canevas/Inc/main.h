@@ -58,7 +58,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 
 typedef enum {INIT,EXEC,IDLE}e_States;
-e_States readStatus(e_States _test);
+void setStatus(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -119,7 +119,9 @@ e_States readStatus(e_States _test);
 #define LCDE_Pin GPIO_PIN_12
 #define LCDE_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
+
 #define _3SEC 600
+
 #define LEDS 0x00F0
 #define LED0 0x0010
 #define LED1 0x0020
