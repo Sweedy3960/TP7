@@ -52,8 +52,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//valVref_mV
- 
+uint16_t valVref_mV=0;
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -93,13 +94,19 @@ void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 uint16_t Adc_read(uint8_t chNr)
 {
 	// *** A COMPLETER ! ***
-	uint16_t a= 0;
-	HAL_ADC_PollForConversion(&hadc,1);//timeout 1ms
 	
+	HAL_ADC_PollForConversion(&hadc,1);//timeout 1ms
 	return HAL_ADC_GetValue(&hadc);
+	
 	//a= (&hadc)->Instance->DR;
 	//HAL_ADC_Stop(&hadc);
 }
+
+e_States readStatus(e_States _statusActuel)
+{
+		
+}
+
 
 // ----------------------------------------------------------------
 
@@ -117,7 +124,7 @@ int main(void)
 	static uint16_t ValueReadAdc = 0;
 	e_States  state;
 	state = INIT;
-	
+	e_States *pt_state =  &state;
 	
 	// *** A COMPLETER ! ***
 	
@@ -169,21 +176,18 @@ int main(void)
 				printf_lcd("Clauzel aymeric");
 				lcd_bl_on();
 				
-				/*if (*pt_cntTime> _3SEC)
-				{
-					state = EXEC;
-				}
-				*/
+			
+				
 				break;
 			case EXEC:
-				//Adc_read(chNr);
+				ValueReadAdc=Adc_read(0);
 				break;
 			case IDLE:
 				
 				break;
 		}
-		Adc_read(0);
-		ValueReadAdc = HAL_ADC_GetValue(&hadc);
+		//Adc_read(0);
+		//ValueReadAdc = HAL_ADC_GetValue(&hadc);
 	//	ValueReadAdc= DR;
 		
 		// *** A COMPLETER ! ***

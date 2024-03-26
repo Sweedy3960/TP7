@@ -58,7 +58,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 
 typedef enum {INIT,EXEC,IDLE}e_States;
-
+e_States readStatus(e_States _test);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
