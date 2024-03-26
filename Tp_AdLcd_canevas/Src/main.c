@@ -72,7 +72,8 @@ void SystemClock_Config(void);
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 {
 	// *** A COMPLETER ! ***
-	
+	// conversion du nombre de pas en mV
+	return ((nLsb*8)/10);
 }
 
 // ----------------------------------------------------------------
