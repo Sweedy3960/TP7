@@ -121,7 +121,7 @@ void setStatus(void);
 /* USER CODE BEGIN Private defines */
 
 #define _3SEC 600
-
+#define _50MSEC 10
 #define LEDS 0x00F0
 #define LED0 0x0010
 #define LED1 0x0020

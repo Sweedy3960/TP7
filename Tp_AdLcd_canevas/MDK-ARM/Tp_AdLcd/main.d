@@ -39,3 +39,5 @@ tp_adlcd\main.o: ../Inc/17400.h
 tp_adlcd\main.o: ../Inc/stm32delays.h
 tp_adlcd\main.o: ../Inc/stm32driverlcd.h
 tp_adlcd\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+tp_adlcd\main.o: ../Inc/stm32f0xx_it.h
+tp_adlcd\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

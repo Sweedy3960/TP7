@@ -23,7 +23,7 @@
 #include "stm32f0xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdbool.h"
 #include "17400.h"
 
 /* USER CODE END Includes */
@@ -60,8 +60,9 @@
 
 /* External variables --------------------------------------------------------*/
 extern TIM_HandleTypeDef htim6;
-/* USER CODE BEGIN EV */
 
+/* USER CODE BEGIN EV */
+bool flag5Ms =false;
 /* USER CODE END EV */
 
 /******************************************************************************/
@@ -148,12 +149,13 @@ void SysTick_Handler(void)
   */
 void TIM6_DAC_IRQHandler(void)
 {
+	//static 	uint8_t status= INIT; 
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
 	HAL_GPIO_TogglePin(GPIOC, LED0_Pin);
   /* USER CODE END TIM6_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
-
+	flag5Ms = true;	
   /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 

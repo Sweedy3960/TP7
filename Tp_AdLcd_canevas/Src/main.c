@@ -30,6 +30,7 @@
 #include "stm32delays.h"
 #include "stm32driverlcd.h"
 
+#include "stm32f0xx_it.h"
 
 /* USER CODE END Includes */
 
@@ -103,10 +104,10 @@ uint16_t Adc_read(uint8_t chNr)
 	//HAL_ADC_Stop(&hadc);
 }
 
-/*
-void setStatus(void)
-{
 
+void SetStatus(void)
+{
+	
 	switch (*pt_state)
 	{
 		case INIT:
@@ -116,12 +117,54 @@ void setStatus(void)
 			*pt_state = IDLE;
 			break;
 		case IDLE:
+			*pt_state = EXEC;
 			break;
 	  default:
 			break;
 	}
 }
-*/
+void GetTimeFlag(void)
+{
+	static bool InitialisationHasOccured = false;
+	static uint16_t cntTime =0;
+	
+	if(flag5Ms)
+	{
+		cntTime++;
+		if (InitialisationHasOccured)
+		{
+			if (cntTime>=_50MSEC)
+			{
+				SetStatus();
+				cntTime=0;
+			}
+		}
+		else
+		{	
+			if (cntTime>=_3SEC)
+			{
+				SetStatus();
+				cntTime=0;
+				InitialisationHasOccured=true;
+			}
+		
+		}
+		
+	}
+	flag5Ms=false; 
+	
+}
+void initialisation(void)
+{
+	HAL_ADC_Start(&hadc);
+	HAL_ADCEx_Calibration_Start(&hadc);
+	printf_lcd("TP AdLcd <2024>");
+	lcd_gotoxy(1,2);
+	printf_lcd("Clauzel aymeric");
+	lcd_bl_on();
+			
+}
+
 // ----------------------------------------------------------------
 
 
@@ -179,21 +222,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		
+		GetTimeFlag();
 		switch(state)
 		{
 			case INIT:
-				HAL_ADC_Start(&hadc);
-				HAL_ADCEx_Calibration_Start(&hadc);
-				printf_lcd("TP AdLcd <2024>");
-				lcd_gotoxy(1,2);
-				printf_lcd("Clauzel aymeric");
-				lcd_bl_on();
-			
-				
+				initialisation();
 				break;
 			case EXEC:
-				ValueReadAdc=Adc_read(0);
+				SetStatus();
 				break;
 			case IDLE:
 				
