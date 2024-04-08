@@ -138,6 +138,17 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	//variables
+	char str_V[20];
+	// variable pour tension
+	int mV;
+	// variable pour nbr de digits
+	int8_t digit;
+	//variable pour etat switch
+	int8_t sw1 = 0;
+	int8_t sw2 = 0;
+	//variable permetant de faire la detection de flan 
+	int8_t previousState1 = 0; 
+	int8_t previousState2 = 0;
 	static uint16_t ValueReadAdc = 0;
 	e_States  state;
 	state = INIT;
@@ -182,17 +193,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		char str_V[20];
-		// variable pour tension
-		int mV;
-		// variable pour nbr de digits
-		int8_t digit;
-		//variable pour etat switch
-		int8_t sw1 = 0;
-		int8_t sw2 = 0;
-		//variable permetant de faire la detection de flan 
-		int8_t previousState1 = 0; 
-		int8_t previousState2 = 0;
 		// permet d'initialiser le tableau a 0
 		for (int i = 0; i < sizeof(str_V); i++) 
 		{
