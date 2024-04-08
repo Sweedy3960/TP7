@@ -83,7 +83,30 @@ uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 //  selon le nb de digits demandés.
 void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
 {	
-	// *** A COMPLETER ! ***
+	int tableau[4] = {0,0,0,0};
+
+	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
+	for (int i = 3; i >= 0; i--)
+	{
+		tableau[i] = u_mV % 10;
+		u_mV /= 10;	
+	}
+
+	// Le premier chiffre avant la virgule décimale
+	str_V[0] = '0' + tableau[0];
+
+	// Insérer le point décimal après le premier chiffre
+	str_V[1] = '.';
+
+	// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
+	for (int i = 1; i <= (nDigits-1); ++i) 
+	{
+		str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+	}
+
+	// Ajouter le caractère nul pour terminer la chaîne de caractere 
+	//+2 pour la virgule et le dernier caractere
+	str_V[nDigits + 2] = '\0';
 }
 
 // ----------------------------------------------------------------
@@ -159,7 +182,25 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		
+		char str_V[20];
+		// variable pour tension
+		int mV;
+		// variable pour nbr de digits
+		int8_t digit;
+		//variable pour etat switch
+		int8_t sw1 = 0;
+		int8_t sw2 = 0;
+		//variable permetant de faire la detection de flan 
+		int8_t previousState1 = 0; 
+		int8_t previousState2 = 0;
+		// permet d'initialiser le tableau a 0
+		for (int i = 0; i < sizeof(str_V); i++) 
+		{
+			str_V[i] = '\0'; // Initialise chaque caractère à '\0' (fin de chaîne)
+		}
+		// enregistrement de la valeur de switch dans un cas precedent
+		previousState1 = sw1;
+		previousState2 = sw2;
 		switch(state)
 		{
 			case INIT:
@@ -167,7 +208,7 @@ int main(void)
 				HAL_ADCEx_Calibration_Start(&hadc);
 				printf_lcd("TP AdLcd <2024>");
 				lcd_gotoxy(1,2);
-				printf_lcd("Clauzel aymeric");
+				printf_lcd("ACL NBN");
 				lcd_bl_on();
 				
 				/*if (*pt_cntTime> _3SEC)
@@ -178,6 +219,16 @@ int main(void)
 				break;
 			case EXEC:
 				//Adc_read(chNr);
+				if((sw1 < previousState1) && (digit > 0))
+				{
+					digit --;
+				}
+				if((sw2 < previousState2) && (digit < 4))
+				{
+					digit ++;
+				}
+				ConvMilliVoltVolt(mV, digit, str_V); // Exemple d'utilisation
+				
 				break;
 			case IDLE:
 				
