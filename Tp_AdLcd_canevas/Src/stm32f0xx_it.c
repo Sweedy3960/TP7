@@ -151,7 +151,11 @@ void TIM6_DAC_IRQHandler(void)
 {
 	//static 	uint8_t status= INIT; 
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
-	HAL_GPIO_TogglePin(GPIOC, LED0_Pin);
+	
+	//utiliser pour tester la boucle 
+	//HAL_GPIO_TogglePin(GPIOC, LED0_Pin);
+	
+	
   /* USER CODE END TIM6_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */

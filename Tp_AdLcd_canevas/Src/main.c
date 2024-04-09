@@ -29,7 +29,7 @@
 #include "17400.h"
 #include "stm32delays.h"
 #include "stm32driverlcd.h"
-
+#include "time.h"
 #include "stm32f0xx_it.h"
 
 /* USER CODE END Includes */
@@ -53,10 +53,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint16_t valVref_mV=0;
+uint16_t valVref_mV=3300;
 e_States  state;
 e_States *pt_state =  &state;
-
+int8_t digit = 1;
+int8_t *pt_digit  = &digit;
+bool firstTime = true;
+bool *pt_firstTime=&firstTime;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,6 +78,8 @@ void SystemClock_Config(void);
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 {
 	// *** A COMPLETER ! ***
+		// conversion du nombre de pas en mV
+		return ((nLsb*8)/10);
 	
 }
 
@@ -85,7 +90,30 @@ uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 //  selon le nb de digits demandés.
 void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
 {	
-	// *** A COMPLETER ! ***
+	static int tableau[4] = {0,0,0,0};
+	
+	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
+	for (int i = 3; i >= 0; i--)
+	{
+		tableau[i] = u_mV % 10;
+		u_mV /= 10;	
+	}
+	
+	// Le premier chiffre avant la virgule décimale
+	str_V[0] = '0' + tableau[0];
+	
+	// Insérer le point décimal après le premier chiffre
+	str_V[1] = '.';
+	
+	// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
+	for (int i = 1; i <= (nDigits-1); ++i) 
+	{
+		str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+	}
+	
+	// Ajouter le caractère nul pour terminer la chaîne de caractere 
+	//+2 pour la virgule et le dernier caractere
+	str_V[nDigits + 2] = '\0';
 }
 
 // ----------------------------------------------------------------
@@ -96,12 +124,16 @@ void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 uint16_t Adc_read(uint8_t chNr)
 {
 	// *** A COMPLETER ! ***
+	uint32_t test; 
 	
-	HAL_ADC_PollForConversion(&hadc,1);//timeout 1ms
-	return HAL_ADC_GetValue(&hadc);
-	
+	HAL_ADC_Start(&hadc);
+	HAL_ADCEx_Calibration_Start(&hadc);
+	if(!HAL_ADC_PollForConversion(&hadc,5))
+	{//timeout 5ms
+		return HAL_ADC_GetValue(&hadc);
+	}
 	//a= (&hadc)->Instance->DR;
-	//HAL_ADC_Stop(&hadc);
+	HAL_ADC_Stop(&hadc);
 }
 
 
@@ -123,7 +155,7 @@ void SetStatus(void)
 			break;
 	}
 }
-void GetTimeFlag(void)
+void GetTimeFlag(char *tb_portEntree)
 {
 	static bool InitialisationHasOccured = false;
 	static uint16_t cntTime =0;
@@ -147,23 +179,153 @@ void GetTimeFlag(void)
 				cntTime=0;
 				InitialisationHasOccured=true;
 			}
-		
 		}
-		
+		readInput(tb_portEntree);
 	}
+	
 	flag5Ms=false; 
 	
 }
 void initialisation(void)
 {
-	HAL_ADC_Start(&hadc);
-	HAL_ADCEx_Calibration_Start(&hadc);
+	//valVref_mV = ConvAdcMilliVolt(Adc_read(0));
 	printf_lcd("TP AdLcd <2024>");
 	lcd_gotoxy(1,2);
 	printf_lcd("Clauzel aymeric");
 	lcd_bl_on();
-			
 }
+
+
+
+void InputActions(char *tb_portEntree)
+{
+	//Annalyse buffer entrée
+		char i;
+		char a;
+		char cntflanc=0;
+		char edgeUp = 0;
+		char edgeDown =0;
+		//balayage du tableau 
+		for (i=0; i<_500MSEC; i++ )
+		{
+			//si la case est différente de la suivante 
+			if (tb_portEntree[i] != tb_portEntree[(i+1)])
+			{
+				//test si premier flanc 
+				if(cntflanc)
+				{
+					//save n° case de tableau
+					edgeDown =i;
+					
+				}
+				else
+				{
+					// save n° case de tableau
+					edgeUp = i;
+					cntflanc++;
+				}
+			}
+		}
+		//le temps dappuis se trouve entre les flanc (nbcases*Tempsentrechaquecase) 
+		//Test pour pulse temps actif moin 500ms et pas 0 
+		if (((edgeDown - edgeUp) != 0)&& edgeDown)
+		{
+
+			//Fonction des switch actif incrément ou décrémente le mode ou la base de temps ou les DEU
+			// Gestion 2 touche appuyee en mm temps
+			switch (~(tb_portEntree[edgeDown])&0x0F)
+			{
+				case S2 :
+					
+					*pt_firstTime =!(*pt_firstTime);
+					if(*pt_firstTime){
+					GPIOC -> ODR |= (LED0);
+					}
+					else{
+					GPIOC -> ODR &= ~(LED0);
+					}
+					break;
+					
+				case S3 :
+					if(*pt_digit>1)
+					{
+						*pt_digit -= 1 ;
+					}
+					
+					break;
+					
+				case S4 :
+					if(*pt_digit < 4)
+					{
+						*pt_digit += 1 ;
+					}			
+					break;
+				
+				case S5 :
+					
+					break;		
+					
+				default:
+					break;
+			}				
+		}
+		//AFINIR
+		GPIOC -> ODR |= (*pt_digit <<4);
+}
+char readInput(char *tb_portEntree)
+{
+	
+		static uint16_t i=0;
+		
+		if(i<=_500MSEC)
+		{
+			tb_portEntree[i+1] = tb_portEntree[i];
+			tb_portEntree[i] = GPIOC-> IDR & 0x0F;	
+			i++;
+		}
+		else
+		{
+			i=0;
+			//Buffer plein annalyse
+			InputActions(tb_portEntree);
+		}
+		
+		
+	return 0; 
+
+}
+
+
+void exec(char *tb_portEntree,char *str_V)
+{
+				static uint16_t valueAdc;
+				static char btnPushed;
+			
+
+				
+				lcd_clearLine(2);
+				lcd_gotoxy(1,0);
+				valueAdc=Adc_read(0);
+				printf_lcd("AI0 :%d / %d mv ",ConvAdcMilliVolt(valueAdc),valVref_mV);
+				//btnPushed = readInput(tb_portEntree);
+				//InputActions(tb_portEntree);
+				ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), digit, str_V); // Exemple d'utilisation
+				if (*pt_firstTime)
+				{
+					lcd_clearLine(2);
+				}
+				else
+				{
+					lcd_clearLine(2);
+					lcd_gotoxy(1,2);
+					printf_lcd("%s V",str_V);
+				}
+				
+				SetStatus();
+				
+
+}
+
 
 // ----------------------------------------------------------------
 
@@ -178,10 +340,12 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	//variables
+	char str_V[20]={0};
 	static uint16_t ValueReadAdc = 0;
 	state = INIT;
-	
-	
+	char tb_portEntree[_500MSEC] = {NULL};
+	char i;
+	char btnPushed ;
 	// *** A COMPLETER ! ***
 	
 	
@@ -217,30 +381,29 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
+		
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		GetTimeFlag();
+		uint16_t value = 0;
+		
 		switch(state)
 		{
 			case INIT:
 				initialisation();
 				break;
-			case EXEC:
-				SetStatus();
+			case EXEC:			
+				exec(tb_portEntree,str_V);
 				break;
 			case IDLE:
-				
+				break;
+			default: 
 				break;
 		}
-		//Adc_read(0);
-		ValueReadAdc = HAL_ADC_GetValue(&hadc);
-	//	ValueReadAdc= DR;
-		
-		// *** A COMPLETER ! ***
-		
+		GetTimeFlag(tb_portEntree);	
   }
   /* USER CODE END 3 */
 }
