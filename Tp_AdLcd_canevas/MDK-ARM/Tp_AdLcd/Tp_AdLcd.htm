@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Tp_AdLcd\Tp_AdLcd.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Tp_AdLcd\Tp_AdLcd.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Apr 09 20:24:38 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Apr 11 13:57:33 2024
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -388,7 +388,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4c]"></a>GetTimeFlag</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, main.o(i.GetTimeFlag))
-<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GetTimeFlag &rArr; readInput &rArr; InputActions
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = GetTimeFlag &rArr; readInput &rArr; InputActions
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readInput
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetStatus
@@ -655,8 +655,8 @@ Global Symbols
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f0xx_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f051x8.o(RESET)
 </UL>
-<P><STRONG><a name="[8b]"></a>InputActions</STRONG> (Thumb, 226 bytes, Stack size 20 bytes, main.o(i.InputActions))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = InputActions
+<P><STRONG><a name="[8b]"></a>InputActions</STRONG> (Thumb, 362 bytes, Stack size 28 bytes, main.o(i.InputActions))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = InputActions
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readInput
 </UL>
@@ -777,7 +777,7 @@ Global Symbols
 
 <P><STRONG><a name="[a1]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[7b]"></a>exec</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, main.o(i.exec))
+<P><STRONG><a name="[7b]"></a>exec</STRONG> (Thumb, 164 bytes, Stack size 16 bytes, main.o(i.exec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = exec &rArr; printf_lcd &rArr; lcd_put_string_ram &rArr; lcd_putc &rArr; lcd_gotoxy &rArr; lcd_send_byte &rArr; lcd_send_nibble &rArr; delay_us
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetStatus
@@ -880,7 +880,7 @@ Global Symbols
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_init
 </UL>
 
-<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 108 bytes, Stack size 120 bytes, main.o(i.main))
+<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 104 bytes, Stack size 120 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_RCC_GetSysClockFreq &rArr; __aeabi_uldivmod &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM6_Init
@@ -908,7 +908,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[4e]"></a>readInput</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, main.o(i.readInput))
-<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = readInput &rArr; InputActions
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = readInput &rArr; InputActions
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InputActions
 </UL>

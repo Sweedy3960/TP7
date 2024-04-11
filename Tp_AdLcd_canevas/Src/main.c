@@ -60,6 +60,9 @@ int8_t digit = 1;
 int8_t *pt_digit  = &digit;
 bool firstTime = true;
 bool *pt_firstTime=&firstTime;
+bool flagCalibrage = false;
+bool *pt_flagCalibrage=&flagCalibrage;
+uint16_t calibrationValue = 3300;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,10 +80,8 @@ void SystemClock_Config(void);
 // 4095 -> 3300 mV
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 {
-	// *** A COMPLETER ! ***
-		// conversion du nombre de pas en mV
+		//conversion du nombre de pas en mV
 		return ((nLsb*8)/10);
-	
 }
 
 // ----------------------------------------------------------------
@@ -122,18 +123,19 @@ void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 // Lecture d'un canal AD par polling
 // Il faut auparavant avoir configuré la/les pin(s) concernée(s) en entrée analogique
 uint16_t Adc_read(uint8_t chNr)
-{
-	// *** A COMPLETER ! ***
-	uint32_t test; 
-	
+{	
+	//démarage périph
 	HAL_ADC_Start(&hadc);
+	//calibration ADC 
 	HAL_ADCEx_Calibration_Start(&hadc);
+	
 	if(!HAL_ADC_PollForConversion(&hadc,5))
 	{//timeout 5ms
 		return HAL_ADC_GetValue(&hadc);
 	}
 	//a= (&hadc)->Instance->DR;
 	HAL_ADC_Stop(&hadc);
+	return 0;
 }
 
 
@@ -188,7 +190,6 @@ void GetTimeFlag(char *tb_portEntree)
 }
 void initialisation(void)
 {
-	//valVref_mV = ConvAdcMilliVolt(Adc_read(0));
 	printf_lcd("TP AdLcd <2024>");
 	lcd_gotoxy(1,2);
 	printf_lcd("Clauzel aymeric");
@@ -201,10 +202,13 @@ void InputActions(char *tb_portEntree)
 {
 	//Annalyse buffer entrée
 		char i;
-		char a;
 		char cntflanc=0;
 		char edgeUp = 0;
 		char edgeDown =0;
+	
+		
+		uint16_t tb_leds[4] = {LED0,LED1,LED2,LED3};
+		
 		//balayage du tableau 
 		for (i=0; i<_500MSEC; i++ )
 		{
@@ -238,39 +242,78 @@ void InputActions(char *tb_portEntree)
 				case S2 :
 					
 					*pt_firstTime =!(*pt_firstTime);
+				
 					if(*pt_firstTime){
 					GPIOC -> ODR |= (LED0);
 					}
 					else{
 					GPIOC -> ODR &= ~(LED0);
 					}
+					
+					flagCalibrage = false;
+					
 					break;
 					
 				case S3 :
-					if(*pt_digit>1)
+					
+					if(flagCalibrage)
 					{
-						*pt_digit -= 1 ;
+						calibrationValue -=5;
+					
+					}
+					else
+					{
+						GPIOC -> ODR |= tb_leds[(*pt_digit-1)];
+				
+						if(*pt_digit>1)
+						{
+							*pt_digit -= 1 ;
+						}
 					}
 					
 					break;
 					
 				case S4 :
-					if(*pt_digit < 4)
+					
+					if(flagCalibrage)
 					{
-						*pt_digit += 1 ;
-					}			
+						calibrationValue +=5;
+					
+					}
+					else
+					{
+						if(*pt_digit < 4)
+						{
+							*pt_digit += 1 ;
+						}			
+						GPIOC -> ODR &= ~tb_leds[(*pt_digit-1)];
+					}
 					break;
 				
 				case S5 :
-					
-					break;		
+					flagCalibrage = false;
+					valVref_mV = calibrationValue;
+					break;
+
 					
 				default:
 					break;
 			}				
 		}
-		//AFINIR
-		GPIOC -> ODR |= (*pt_digit <<4);
+		else
+		{
+			if(edgeUp && !edgeDown)
+			{
+			   switch (~(tb_portEntree[edgeDown])&0x0F)
+				 {
+						case S2 :
+							flagCalibrage = true;
+							calibrationValue = 3300;
+							break;
+				 }
+			}
+		}
+	
 }
 char readInput(char *tb_portEntree)
 {
@@ -299,26 +342,35 @@ char readInput(char *tb_portEntree)
 void exec(char *tb_portEntree,char *str_V)
 {
 				static uint16_t valueAdc;
-				static char btnPushed;
-			
-
 				
 				lcd_clearLine(2);
 				lcd_gotoxy(1,0);
 				valueAdc=Adc_read(0);
-				printf_lcd("AI0 :%d / %d mv ",ConvAdcMilliVolt(valueAdc),valVref_mV);
+				printf_lcd("AI0 :%d / %d mv ",valueAdc,ConvAdcMilliVolt(valueAdc));
 				//btnPushed = readInput(tb_portEntree);
 				//InputActions(tb_portEntree);
-				ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), digit, str_V); // Exemple d'utilisation
+				
 				if (*pt_firstTime)
 				{
 					lcd_clearLine(2);
 				}
 				else
 				{
-					lcd_clearLine(2);
-					lcd_gotoxy(1,2);
-					printf_lcd("%s V",str_V);
+					if(flagCalibrage)
+					{
+						lcd_gotoxy(1,0);
+						printf_lcd("*** Calibration *** ");
+						lcd_gotoxy(1,2);
+						printf_lcd("%d",calibrationValue);
+					}
+					else
+					{
+					
+						ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), *pt_digit, str_V); // Exemple d'utilisation
+						lcd_clearLine(2);
+						lcd_gotoxy(1,2);
+						printf_lcd("%s V",str_V);
+					}
 				}
 				
 				SetStatus();
@@ -341,16 +393,8 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	//variables
 	char str_V[20]={0};
-	static uint16_t ValueReadAdc = 0;
 	state = INIT;
 	char tb_portEntree[_500MSEC] = {NULL};
-	char i;
-	char btnPushed ;
-	// *** A COMPLETER ! ***
-	
-	
-	//init	
-	// *** A COMPLETER ! ***
 	
   /* USER CODE END 1 */
 
@@ -388,8 +432,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		uint16_t value = 0;
-		
+
 		switch(state)
 		{
 			case INIT:
