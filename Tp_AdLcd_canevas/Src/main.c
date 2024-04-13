@@ -84,6 +84,7 @@ uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
 {	
 	int tableau[4] = {0,0,0,0};
+	int index = nDigits - 1;
 
 	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
 	for (int i = 3; i >= 0; i--)
@@ -92,16 +93,46 @@ void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 		u_mV /= 10;	
 	}
 
+	// Gérer l'arrondi
+	if (nDigits < 4 && tableau[nDigits] >= 5)
+	{
+		// Arrondir
+		tableau[index]++;
+		while (index > 0 && tableau[index] == 10) 
+		{
+			// Report si nécessaire
+			tableau[index] = 0;
+			tableau[--index]++;
+		}
+
+		// Gérer le cas où le premier chiffre devient 10 après l'arrondi
+		if (index == 0 && tableau[index] == 10) 
+		{
+			tableau[index] = 1;
+			for (int i = 1; i < 4; i++) 
+			{
+				tableau[i] = 0;
+			}
+			// Cela signifie que nous avons maintenant un chiffre supplémentaire à afficher
+			if (nDigits > 1) 
+			{
+				nDigits++;
+			}
+		}
+	}
+
 	// Le premier chiffre avant la virgule décimale
 	str_V[0] = '0' + tableau[0];
 
-	// Insérer le point décimal après le premier chiffre
-	str_V[1] = '.';
-
-	// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
-	for (int i = 1; i <= (nDigits-1); ++i) 
+	if (nDigits > 1)
 	{
-		str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+		// Insérer le point décimal après le premier chiffre
+		str_V[1] = '.';
+		// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
+		for (int i = 1; i <= (nDigits - 1); ++i)
+		{
+			str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+		}
 	}
 
 	// Ajouter le caractère nul pour terminer la chaîne de caractere 
