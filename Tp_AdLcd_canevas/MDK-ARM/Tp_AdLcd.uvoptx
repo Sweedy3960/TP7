@@ -280,6 +280,16 @@
           <WinNumber>1</WinNumber>
           <ItemText>tb_portEntree[edgeUp]</ItemText>
         </Ww>
+        <Ww>
+          <count>25</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>pt_digit</ItemText>
+        </Ww>
+        <Ww>
+          <count>26</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>str_V,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
@@ -301,6 +311,16 @@
           <count>3</count>
           <WinNumber>2</WinNumber>
           <ItemText>(((a)/2)&lt;&lt;4)</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>tableau[nDigits]</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>str_V[3]</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>

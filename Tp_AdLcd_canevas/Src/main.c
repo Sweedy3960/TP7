@@ -98,32 +98,65 @@ uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 // en V sur nDigits digits. Prévu pour tension entre 0 et 3,3V (=> u_mV entre 0 et 3300).
 // La sortie contiendra donc unité + évt point décimal, dixièmes, centièmes, millièmes,
 //  selon le nb de digits demandés.
-void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
+char ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
 {	
-  int tableau[4] = {0,0,0,0};
-	
+	int tableau[4] = {0,0,0,0};
+	int index = nDigits - 1;
+
 	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
 	for (int i = 3; i >= 0; i--)
 	{
 		tableau[i] = u_mV % 10;
 		u_mV /= 10;	
 	}
-	
+
+	// Gérer l'arrondi
+	if (nDigits < 4 && tableau[nDigits] >= 5)
+	{
+		// Arrondir
+		tableau[index]++;
+		while (index > 0 && tableau[index] == 10) 
+		{
+			// Report si nécessaire
+			tableau[index] = 0;
+			index--;
+			tableau[index]++;
+		}
+
+		// Gérer le cas où le premier chiffre devient 10 après l'arrondi
+		if (index == 0 && tableau[index] == 10) 
+		{
+			tableau[index] = 1;
+			for (int i = 1; i < 4; i++) 
+			{
+				tableau[i] = 0;
+			}
+			// Cela signifie que nous avons maintenant un chiffre supplémentaire à afficher
+			if (nDigits > 1) 
+			{
+				nDigits++;
+			}
+		}
+	}
+
 	// Le premier chiffre avant la virgule décimale
 	str_V[0] = '0' + tableau[0];
-	
-	// Insérer le point décimal après le premier chiffre
-	str_V[1] = '.';
-	
-	// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
-	for (int i = 1; i <= (nDigits-1); ++i) 
+
+	if (nDigits > 1)
 	{
-		str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+		// Insérer le point décimal après le premier chiffre
+		str_V[1] = '.';
+		// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
+		for (int i = 1; i <= (nDigits - 1); ++i)
+		{
+			str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
+		}
 	}
-	
+
 	// Ajouter le caractère nul pour terminer la chaîne de caractere 
 	//+2 pour la virgule et le dernier caractere
 	str_V[nDigits + 2] = '\0';
+	return 0;
 }
 
 // ----------------------------------------------------------------
@@ -426,10 +459,10 @@ void exec(char *tb_portEntree,char *str_V)
 					else
 					{
 						//-----affichage mode normal*********
-						ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), *pt_digit, str_V); // Exemple d'utilisation
+					  ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), *pt_digit, str_V); // Exemple d'utilisation
 						lcd_clearLine(2);
 						lcd_gotoxy(1,2);
-						printf_lcd("%s V",str_V);
+						printf_lcd("%s V",str_V[*pt_digit]);
 					}
 				}
 				//appel fct pour repartir en IDLE
