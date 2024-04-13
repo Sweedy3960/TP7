@@ -462,7 +462,7 @@ void exec(char *tb_portEntree,char *str_V)
 					  ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), *pt_digit, str_V); // Exemple d'utilisation
 						lcd_clearLine(2);
 						lcd_gotoxy(1,2);
-						printf_lcd("%s V",str_V[*pt_digit]);
+						printf_lcd("%s V",str_V);
 					}
 				}
 				//appel fct pour repartir en IDLE
