@@ -102,6 +102,11 @@ char ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 {	
 	int tableau[4] = {0,0,0,0};
 	int index = nDigits - 1;
+	
+	for (int i = 0; i < sizeof(str_V); i++) 
+	{
+    str_V[i] = '\0'; // Initialise chaque caractère à '\0' (fin de chaîne)
+	}
 
 	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
 	for (int i = 3; i >= 0; i--)
