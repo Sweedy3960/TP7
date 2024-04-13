@@ -82,15 +82,10 @@ void SystemClock_Config(void);
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 {
 		//conversion du nombre de pas en mV
-	
-		//modif calcul pour utilisation de val ref + pas d'utilisation de float donc * 100 rester avec resultats entier 
+		//modif calcul pour utilisation de val ref + pas d'utilisation de float donc * 100 
+		//rester avec resultats entier 
 		// engendre une erreur (apres la , dans le calcul)
 		return ((((((valVref_mV*100)/ADCMAXVAL))*nLsb))/100);
-	
-	
-	
-	
-		//return ((nLsb*8)/10);
 }
 
 // ----------------------------------------------------------------
@@ -187,7 +182,7 @@ uint16_t Adc_read(uint8_t chNr)
 
 
 void SetStatus(void)
-//Cette fonction change l'état de la machine lors de son appel
+//Cette fonction change l'état de la machine d'état lors de son appel
 {
 	
 	switch (*pt_state)
@@ -307,10 +302,12 @@ void InputActions(char *tb_portEntree)
 					*pt_firstTime =!(*pt_firstTime);
 					//selon létat du flag allume led 0 ou éteind toutes
 					if(*pt_firstTime){
+					//si ligne 2 désactivée remet digit a 1
 					GPIOC -> ODR |= (LEDS);
+					*pt_digit =1;
 					}
 					else{
-					GPIOC -> ODR &= ~(LED0);
+					GPIOC -> ODR &= ~LED0;
 					}
 					//pas besoin de tester mais chaque appuis fait sortir de la calibration 
 					flagCalibrage = false;

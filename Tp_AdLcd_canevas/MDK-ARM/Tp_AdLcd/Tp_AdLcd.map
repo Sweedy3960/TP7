@@ -1338,52 +1338,52 @@ Image Symbol Table
     i.HAL_TIM_TriggerCallback                0x080018f6   Section        0  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
     i.HardFault_Handler                      0x080018f8   Section        0  stm32f0xx_it.o(i.HardFault_Handler)
     i.InputActions                           0x080018fc   Section        0  main.o(i.InputActions)
-    i.MX_ADC_Init                            0x08001a0c   Section        0  adc.o(i.MX_ADC_Init)
-    i.MX_GPIO_Init                           0x08001a74   Section        0  gpio.o(i.MX_GPIO_Init)
-    i.MX_TIM6_Init                           0x08001ba4   Section        0  tim.o(i.MX_TIM6_Init)
-    i.NMI_Handler                            0x08001bf0   Section        0  stm32f0xx_it.o(i.NMI_Handler)
-    i.PendSV_Handler                         0x08001bf8   Section        0  stm32f0xx_it.o(i.PendSV_Handler)
-    i.SVC_Handler                            0x08001bfa   Section        0  stm32f0xx_it.o(i.SVC_Handler)
-    i.SetStatus                              0x08001bfc   Section        0  main.o(i.SetStatus)
-    i.SysTick_Handler                        0x08001c20   Section        0  stm32f0xx_it.o(i.SysTick_Handler)
-    i.SystemClock_Config                     0x08001c28   Section        0  main.o(i.SystemClock_Config)
-    i.SystemInit                             0x08001c7a   Section        0  system_stm32f0xx.o(i.SystemInit)
-    i.TIM6_DAC_IRQHandler                    0x08001c7c   Section        0  stm32f0xx_it.o(i.TIM6_DAC_IRQHandler)
-    i.TIM_Base_SetConfig                     0x08001c94   Section        0  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
-    i.__0vsprintf                            0x08001d28   Section        0  printfa.o(i.__0vsprintf)
-    i.__ARM_clz                              0x08001d4c   Section        0  depilogue.o(i.__ARM_clz)
-    i.__ARM_common_ll_muluu                  0x08001d7a   Section        0  stm32f0xx_hal_rcc.o(i.__ARM_common_ll_muluu)
-    i.__NVIC_SetPriority                     0x08001dac   Section        0  stm32f0xx_hal_cortex.o(i.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x08001dad   Thumb Code    60  stm32f0xx_hal_cortex.o(i.__NVIC_SetPriority)
-    i.__scatterload_copy                     0x08001df0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x08001dfe   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x08001e00   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._fp_digits                             0x08001e10   Section        0  printfa.o(i._fp_digits)
-    _fp_digits                               0x08001e11   Thumb Code   344  printfa.o(i._fp_digits)
-    i._printf_core                           0x08001f84   Section        0  printfa.o(i._printf_core)
-    _printf_core                             0x08001f85   Thumb Code  1760  printfa.o(i._printf_core)
-    i._printf_post_padding                   0x08002674   Section        0  printfa.o(i._printf_post_padding)
-    _printf_post_padding                     0x08002675   Thumb Code    32  printfa.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x08002694   Section        0  printfa.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x08002695   Thumb Code    44  printfa.o(i._printf_pre_padding)
-    i._sputc                                 0x080026c0   Section        0  printfa.o(i._sputc)
-    _sputc                                   0x080026c1   Thumb Code    10  printfa.o(i._sputc)
-    i.exec                                   0x080026cc   Section        0  main.o(i.exec)
-    i.initialisation                         0x08002790   Section        0  main.o(i.initialisation)
-    i.lcd_bl_on                              0x080027cc   Section        0  stm32driverlcd.o(i.lcd_bl_on)
-    i.lcd_checkbf                            0x080027dc   Section        0  stm32driverlcd.o(i.lcd_checkbf)
-    i.lcd_clearLine                          0x08002848   Section        0  stm32driverlcd.o(i.lcd_clearLine)
-    i.lcd_gotoxy                             0x0800286c   Section        0  stm32driverlcd.o(i.lcd_gotoxy)
-    i.lcd_init                               0x08002888   Section        0  stm32driverlcd.o(i.lcd_init)
-    i.lcd_put_string_ram                     0x080029fc   Section        0  stm32driverlcd.o(i.lcd_put_string_ram)
-    i.lcd_putc                               0x08002a10   Section        0  stm32driverlcd.o(i.lcd_putc)
-    i.lcd_send_byte                          0x08002a30   Section        0  stm32driverlcd.o(i.lcd_send_byte)
-    i.lcd_send_nibble                        0x08002a68   Section        0  stm32driverlcd.o(i.lcd_send_nibble)
-    i.main                                   0x08002a98   Section        0  main.o(i.main)
-    i.printf_lcd                             0x08002af8   Section        0  stm32driverlcd.o(i.printf_lcd)
-    i.readInput                              0x08002b18   Section        0  main.o(i.readInput)
-    .constdata                               0x08002b4c   Section        3  stm32driverlcd.o(.constdata)
-    .constdata                               0x08002b4f   Section       16  system_stm32f0xx.o(.constdata)
+    i.MX_ADC_Init                            0x08001a14   Section        0  adc.o(i.MX_ADC_Init)
+    i.MX_GPIO_Init                           0x08001a7c   Section        0  gpio.o(i.MX_GPIO_Init)
+    i.MX_TIM6_Init                           0x08001bac   Section        0  tim.o(i.MX_TIM6_Init)
+    i.NMI_Handler                            0x08001bf8   Section        0  stm32f0xx_it.o(i.NMI_Handler)
+    i.PendSV_Handler                         0x08001c00   Section        0  stm32f0xx_it.o(i.PendSV_Handler)
+    i.SVC_Handler                            0x08001c02   Section        0  stm32f0xx_it.o(i.SVC_Handler)
+    i.SetStatus                              0x08001c04   Section        0  main.o(i.SetStatus)
+    i.SysTick_Handler                        0x08001c28   Section        0  stm32f0xx_it.o(i.SysTick_Handler)
+    i.SystemClock_Config                     0x08001c30   Section        0  main.o(i.SystemClock_Config)
+    i.SystemInit                             0x08001c82   Section        0  system_stm32f0xx.o(i.SystemInit)
+    i.TIM6_DAC_IRQHandler                    0x08001c84   Section        0  stm32f0xx_it.o(i.TIM6_DAC_IRQHandler)
+    i.TIM_Base_SetConfig                     0x08001c9c   Section        0  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
+    i.__0vsprintf                            0x08001d30   Section        0  printfa.o(i.__0vsprintf)
+    i.__ARM_clz                              0x08001d54   Section        0  depilogue.o(i.__ARM_clz)
+    i.__ARM_common_ll_muluu                  0x08001d82   Section        0  stm32f0xx_hal_rcc.o(i.__ARM_common_ll_muluu)
+    i.__NVIC_SetPriority                     0x08001db4   Section        0  stm32f0xx_hal_cortex.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x08001db5   Thumb Code    60  stm32f0xx_hal_cortex.o(i.__NVIC_SetPriority)
+    i.__scatterload_copy                     0x08001df8   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08001e06   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08001e08   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._fp_digits                             0x08001e18   Section        0  printfa.o(i._fp_digits)
+    _fp_digits                               0x08001e19   Thumb Code   344  printfa.o(i._fp_digits)
+    i._printf_core                           0x08001f8c   Section        0  printfa.o(i._printf_core)
+    _printf_core                             0x08001f8d   Thumb Code  1760  printfa.o(i._printf_core)
+    i._printf_post_padding                   0x0800267c   Section        0  printfa.o(i._printf_post_padding)
+    _printf_post_padding                     0x0800267d   Thumb Code    32  printfa.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x0800269c   Section        0  printfa.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x0800269d   Thumb Code    44  printfa.o(i._printf_pre_padding)
+    i._sputc                                 0x080026c8   Section        0  printfa.o(i._sputc)
+    _sputc                                   0x080026c9   Thumb Code    10  printfa.o(i._sputc)
+    i.exec                                   0x080026d4   Section        0  main.o(i.exec)
+    i.initialisation                         0x08002798   Section        0  main.o(i.initialisation)
+    i.lcd_bl_on                              0x080027d4   Section        0  stm32driverlcd.o(i.lcd_bl_on)
+    i.lcd_checkbf                            0x080027e4   Section        0  stm32driverlcd.o(i.lcd_checkbf)
+    i.lcd_clearLine                          0x08002850   Section        0  stm32driverlcd.o(i.lcd_clearLine)
+    i.lcd_gotoxy                             0x08002874   Section        0  stm32driverlcd.o(i.lcd_gotoxy)
+    i.lcd_init                               0x08002890   Section        0  stm32driverlcd.o(i.lcd_init)
+    i.lcd_put_string_ram                     0x08002a04   Section        0  stm32driverlcd.o(i.lcd_put_string_ram)
+    i.lcd_putc                               0x08002a18   Section        0  stm32driverlcd.o(i.lcd_putc)
+    i.lcd_send_byte                          0x08002a38   Section        0  stm32driverlcd.o(i.lcd_send_byte)
+    i.lcd_send_nibble                        0x08002a70   Section        0  stm32driverlcd.o(i.lcd_send_nibble)
+    i.main                                   0x08002aa0   Section        0  main.o(i.main)
+    i.printf_lcd                             0x08002b00   Section        0  stm32driverlcd.o(i.printf_lcd)
+    i.readInput                              0x08002b20   Section        0  main.o(i.readInput)
+    .constdata                               0x08002b54   Section        3  stm32driverlcd.o(.constdata)
+    .constdata                               0x08002b57   Section       16  system_stm32f0xx.o(.constdata)
     .data                                    0x20000000   Section        1  stm32driverlcd.o(.data)
     .data                                    0x20000004   Section       28  main.o(.data)
     InitialisationHasOccured                 0x20000005   Data           1  main.o(.data)
@@ -1527,47 +1527,47 @@ Image Symbol Table
     HAL_TIM_PeriodElapsedCallback            0x080018f5   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_PeriodElapsedCallback)
     HAL_TIM_TriggerCallback                  0x080018f7   Thumb Code     2  stm32f0xx_hal_tim.o(i.HAL_TIM_TriggerCallback)
     HardFault_Handler                        0x080018f9   Thumb Code     2  stm32f0xx_it.o(i.HardFault_Handler)
-    InputActions                             0x080018fd   Thumb Code   258  main.o(i.InputActions)
-    MX_ADC_Init                              0x08001a0d   Thumb Code    96  adc.o(i.MX_ADC_Init)
-    MX_GPIO_Init                             0x08001a75   Thumb Code   284  gpio.o(i.MX_GPIO_Init)
-    MX_TIM6_Init                             0x08001ba5   Thumb Code    62  tim.o(i.MX_TIM6_Init)
-    NMI_Handler                              0x08001bf1   Thumb Code     8  stm32f0xx_it.o(i.NMI_Handler)
-    PendSV_Handler                           0x08001bf9   Thumb Code     2  stm32f0xx_it.o(i.PendSV_Handler)
-    SVC_Handler                              0x08001bfb   Thumb Code     2  stm32f0xx_it.o(i.SVC_Handler)
-    SetStatus                                0x08001bfd   Thumb Code    30  main.o(i.SetStatus)
-    SysTick_Handler                          0x08001c21   Thumb Code     8  stm32f0xx_it.o(i.SysTick_Handler)
-    SystemClock_Config                       0x08001c29   Thumb Code    82  main.o(i.SystemClock_Config)
-    SystemInit                               0x08001c7b   Thumb Code     2  system_stm32f0xx.o(i.SystemInit)
-    TIM6_DAC_IRQHandler                      0x08001c7d   Thumb Code    16  stm32f0xx_it.o(i.TIM6_DAC_IRQHandler)
-    TIM_Base_SetConfig                       0x08001c95   Thumb Code   124  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
-    __0vsprintf                              0x08001d29   Thumb Code    30  printfa.o(i.__0vsprintf)
-    __1vsprintf                              0x08001d29   Thumb Code     0  printfa.o(i.__0vsprintf)
-    __2vsprintf                              0x08001d29   Thumb Code     0  printfa.o(i.__0vsprintf)
-    __c89vsprintf                            0x08001d29   Thumb Code     0  printfa.o(i.__0vsprintf)
-    vsprintf                                 0x08001d29   Thumb Code     0  printfa.o(i.__0vsprintf)
-    __ARM_clz                                0x08001d4d   Thumb Code    46  depilogue.o(i.__ARM_clz)
-    __ARM_common_ll_muluu                    0x08001d7b   Thumb Code    48  stm32f0xx_hal_rcc.o(i.__ARM_common_ll_muluu)
-    __scatterload_copy                       0x08001df1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x08001dff   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x08001e01   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    exec                                     0x080026cd   Thumb Code   136  main.o(i.exec)
-    initialisation                           0x08002791   Thumb Code    36  main.o(i.initialisation)
-    lcd_bl_on                                0x080027cd   Thumb Code    10  stm32driverlcd.o(i.lcd_bl_on)
-    lcd_checkbf                              0x080027dd   Thumb Code   100  stm32driverlcd.o(i.lcd_checkbf)
-    lcd_clearLine                            0x08002849   Thumb Code    36  stm32driverlcd.o(i.lcd_clearLine)
-    lcd_gotoxy                               0x0800286d   Thumb Code    24  stm32driverlcd.o(i.lcd_gotoxy)
-    lcd_init                                 0x08002889   Thumb Code   350  stm32driverlcd.o(i.lcd_init)
-    lcd_put_string_ram                       0x080029fd   Thumb Code    20  stm32driverlcd.o(i.lcd_put_string_ram)
-    lcd_putc                                 0x08002a11   Thumb Code    30  stm32driverlcd.o(i.lcd_putc)
-    lcd_send_byte                            0x08002a31   Thumb Code    52  stm32driverlcd.o(i.lcd_send_byte)
-    lcd_send_nibble                          0x08002a69   Thumb Code    40  stm32driverlcd.o(i.lcd_send_nibble)
-    main                                     0x08002a99   Thumb Code    88  main.o(i.main)
-    printf_lcd                               0x08002af9   Thumb Code    30  stm32driverlcd.o(i.printf_lcd)
-    readInput                                0x08002b19   Thumb Code    42  main.o(i.readInput)
-    taddrLines                               0x08002b4c   Data           3  stm32driverlcd.o(.constdata)
-    AHBPrescTable                            0x08002b4f   Data          16  system_stm32f0xx.o(.constdata)
-    Region$$Table$$Base                      0x08002b60   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002b80   Number         0  anon$$obj.o(Region$$Table)
+    InputActions                             0x080018fd   Thumb Code   266  main.o(i.InputActions)
+    MX_ADC_Init                              0x08001a15   Thumb Code    96  adc.o(i.MX_ADC_Init)
+    MX_GPIO_Init                             0x08001a7d   Thumb Code   284  gpio.o(i.MX_GPIO_Init)
+    MX_TIM6_Init                             0x08001bad   Thumb Code    62  tim.o(i.MX_TIM6_Init)
+    NMI_Handler                              0x08001bf9   Thumb Code     8  stm32f0xx_it.o(i.NMI_Handler)
+    PendSV_Handler                           0x08001c01   Thumb Code     2  stm32f0xx_it.o(i.PendSV_Handler)
+    SVC_Handler                              0x08001c03   Thumb Code     2  stm32f0xx_it.o(i.SVC_Handler)
+    SetStatus                                0x08001c05   Thumb Code    30  main.o(i.SetStatus)
+    SysTick_Handler                          0x08001c29   Thumb Code     8  stm32f0xx_it.o(i.SysTick_Handler)
+    SystemClock_Config                       0x08001c31   Thumb Code    82  main.o(i.SystemClock_Config)
+    SystemInit                               0x08001c83   Thumb Code     2  system_stm32f0xx.o(i.SystemInit)
+    TIM6_DAC_IRQHandler                      0x08001c85   Thumb Code    16  stm32f0xx_it.o(i.TIM6_DAC_IRQHandler)
+    TIM_Base_SetConfig                       0x08001c9d   Thumb Code   124  stm32f0xx_hal_tim.o(i.TIM_Base_SetConfig)
+    __0vsprintf                              0x08001d31   Thumb Code    30  printfa.o(i.__0vsprintf)
+    __1vsprintf                              0x08001d31   Thumb Code     0  printfa.o(i.__0vsprintf)
+    __2vsprintf                              0x08001d31   Thumb Code     0  printfa.o(i.__0vsprintf)
+    __c89vsprintf                            0x08001d31   Thumb Code     0  printfa.o(i.__0vsprintf)
+    vsprintf                                 0x08001d31   Thumb Code     0  printfa.o(i.__0vsprintf)
+    __ARM_clz                                0x08001d55   Thumb Code    46  depilogue.o(i.__ARM_clz)
+    __ARM_common_ll_muluu                    0x08001d83   Thumb Code    48  stm32f0xx_hal_rcc.o(i.__ARM_common_ll_muluu)
+    __scatterload_copy                       0x08001df9   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08001e07   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08001e09   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    exec                                     0x080026d5   Thumb Code   136  main.o(i.exec)
+    initialisation                           0x08002799   Thumb Code    36  main.o(i.initialisation)
+    lcd_bl_on                                0x080027d5   Thumb Code    10  stm32driverlcd.o(i.lcd_bl_on)
+    lcd_checkbf                              0x080027e5   Thumb Code   100  stm32driverlcd.o(i.lcd_checkbf)
+    lcd_clearLine                            0x08002851   Thumb Code    36  stm32driverlcd.o(i.lcd_clearLine)
+    lcd_gotoxy                               0x08002875   Thumb Code    24  stm32driverlcd.o(i.lcd_gotoxy)
+    lcd_init                                 0x08002891   Thumb Code   350  stm32driverlcd.o(i.lcd_init)
+    lcd_put_string_ram                       0x08002a05   Thumb Code    20  stm32driverlcd.o(i.lcd_put_string_ram)
+    lcd_putc                                 0x08002a19   Thumb Code    30  stm32driverlcd.o(i.lcd_putc)
+    lcd_send_byte                            0x08002a39   Thumb Code    52  stm32driverlcd.o(i.lcd_send_byte)
+    lcd_send_nibble                          0x08002a71   Thumb Code    40  stm32driverlcd.o(i.lcd_send_nibble)
+    main                                     0x08002aa1   Thumb Code    88  main.o(i.main)
+    printf_lcd                               0x08002b01   Thumb Code    30  stm32driverlcd.o(i.printf_lcd)
+    readInput                                0x08002b21   Thumb Code    42  main.o(i.readInput)
+    taddrLines                               0x08002b54   Data           3  stm32driverlcd.o(.constdata)
+    AHBPrescTable                            0x08002b57   Data          16  system_stm32f0xx.o(.constdata)
+    Region$$Table$$Base                      0x08002b68   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08002b88   Number         0  anon$$obj.o(Region$$Table)
     lcdModel                                 0x20000000   Data           1  stm32driverlcd.o(.data)
     flagCalibrage                            0x20000004   Data           1  main.o(.data)
     state                                    0x20000006   Data           1  main.o(.data)
@@ -1595,9 +1595,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000bd
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002bb4, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002bbc, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002b80, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002b88, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1681,72 +1681,72 @@ Memory Map of the image
     0x080018f6   0x080018f6   0x00000002   Code   RO         2236    i.HAL_TIM_TriggerCallback  stm32f0xx_hal_tim.o
     0x080018f8   0x080018f8   0x00000002   Code   RO          446    i.HardFault_Handler  stm32f0xx_it.o
     0x080018fa   0x080018fa   0x00000002   PAD
-    0x080018fc   0x080018fc   0x00000110   Code   RO          237    i.InputActions      main.o
-    0x08001a0c   0x08001a0c   0x00000068   Code   RO          372    i.MX_ADC_Init       adc.o
-    0x08001a74   0x08001a74   0x00000130   Code   RO          350    i.MX_GPIO_Init      gpio.o
-    0x08001ba4   0x08001ba4   0x0000004c   Code   RO          410    i.MX_TIM6_Init      tim.o
-    0x08001bf0   0x08001bf0   0x00000008   Code   RO          447    i.NMI_Handler       stm32f0xx_it.o
-    0x08001bf8   0x08001bf8   0x00000002   Code   RO          448    i.PendSV_Handler    stm32f0xx_it.o
-    0x08001bfa   0x08001bfa   0x00000002   Code   RO          449    i.SVC_Handler       stm32f0xx_it.o
-    0x08001bfc   0x08001bfc   0x00000024   Code   RO          238    i.SetStatus         main.o
-    0x08001c20   0x08001c20   0x00000008   Code   RO          450    i.SysTick_Handler   stm32f0xx_it.o
-    0x08001c28   0x08001c28   0x00000052   Code   RO          239    i.SystemClock_Config  main.o
-    0x08001c7a   0x08001c7a   0x00000002   Code   RO         3109    i.SystemInit        system_stm32f0xx.o
-    0x08001c7c   0x08001c7c   0x00000018   Code   RO          451    i.TIM6_DAC_IRQHandler  stm32f0xx_it.o
-    0x08001c94   0x08001c94   0x00000094   Code   RO         2238    i.TIM_Base_SetConfig  stm32f0xx_hal_tim.o
-    0x08001d28   0x08001d28   0x00000024   Code   RO         3158    i.__0vsprintf       mc_p.l(printfa.o)
-    0x08001d4c   0x08001d4c   0x0000002e   Code   RO         3219    i.__ARM_clz         mf_p.l(depilogue.o)
-    0x08001d7a   0x08001d7a   0x00000030   Code   RO          805    i.__ARM_common_ll_muluu  stm32f0xx_hal_rcc.o
-    0x08001daa   0x08001daa   0x00000002   PAD
-    0x08001dac   0x08001dac   0x00000044   Code   RO         1683    i.__NVIC_SetPriority  stm32f0xx_hal_cortex.o
-    0x08001df0   0x08001df0   0x0000000e   Code   RO         3223    i.__scatterload_copy  mc_p.l(handlers.o)
-    0x08001dfe   0x08001dfe   0x00000002   Code   RO         3224    i.__scatterload_null  mc_p.l(handlers.o)
-    0x08001e00   0x08001e00   0x0000000e   Code   RO         3225    i.__scatterload_zeroinit  mc_p.l(handlers.o)
-    0x08001e0e   0x08001e0e   0x00000002   PAD
-    0x08001e10   0x08001e10   0x00000174   Code   RO         3159    i._fp_digits        mc_p.l(printfa.o)
-    0x08001f84   0x08001f84   0x000006f0   Code   RO         3160    i._printf_core      mc_p.l(printfa.o)
-    0x08002674   0x08002674   0x00000020   Code   RO         3161    i._printf_post_padding  mc_p.l(printfa.o)
-    0x08002694   0x08002694   0x0000002c   Code   RO         3162    i._printf_pre_padding  mc_p.l(printfa.o)
-    0x080026c0   0x080026c0   0x0000000a   Code   RO         3164    i._sputc            mc_p.l(printfa.o)
-    0x080026ca   0x080026ca   0x00000002   PAD
-    0x080026cc   0x080026cc   0x000000c4   Code   RO          240    i.exec              main.o
-    0x08002790   0x08002790   0x0000003c   Code   RO          241    i.initialisation    main.o
-    0x080027cc   0x080027cc   0x00000010   Code   RO           13    i.lcd_bl_on         stm32driverlcd.o
-    0x080027dc   0x080027dc   0x0000006c   Code   RO           14    i.lcd_checkbf       stm32driverlcd.o
-    0x08002848   0x08002848   0x00000024   Code   RO           15    i.lcd_clearLine     stm32driverlcd.o
-    0x0800286c   0x0800286c   0x0000001c   Code   RO           17    i.lcd_gotoxy        stm32driverlcd.o
-    0x08002888   0x08002888   0x00000174   Code   RO           18    i.lcd_init          stm32driverlcd.o
-    0x080029fc   0x080029fc   0x00000014   Code   RO           19    i.lcd_put_string_ram  stm32driverlcd.o
-    0x08002a10   0x08002a10   0x0000001e   Code   RO           20    i.lcd_putc          stm32driverlcd.o
-    0x08002a2e   0x08002a2e   0x00000002   PAD
-    0x08002a30   0x08002a30   0x00000038   Code   RO           21    i.lcd_send_byte     stm32driverlcd.o
-    0x08002a68   0x08002a68   0x00000030   Code   RO           22    i.lcd_send_nibble   stm32driverlcd.o
-    0x08002a98   0x08002a98   0x00000060   Code   RO          242    i.main              main.o
-    0x08002af8   0x08002af8   0x0000001e   Code   RO           23    i.printf_lcd        stm32driverlcd.o
-    0x08002b16   0x08002b16   0x00000002   PAD
-    0x08002b18   0x08002b18   0x00000034   Code   RO          243    i.readInput         main.o
-    0x08002b4c   0x08002b4c   0x00000003   Data   RO           24    .constdata          stm32driverlcd.o
-    0x08002b4f   0x08002b4f   0x00000010   Data   RO         3110    .constdata          system_stm32f0xx.o
-    0x08002b5f   0x08002b5f   0x00000001   PAD
-    0x08002b60   0x08002b60   0x00000020   Data   RO         3221    Region$$Table       anon$$obj.o
+    0x080018fc   0x080018fc   0x00000118   Code   RO          237    i.InputActions      main.o
+    0x08001a14   0x08001a14   0x00000068   Code   RO          372    i.MX_ADC_Init       adc.o
+    0x08001a7c   0x08001a7c   0x00000130   Code   RO          350    i.MX_GPIO_Init      gpio.o
+    0x08001bac   0x08001bac   0x0000004c   Code   RO          410    i.MX_TIM6_Init      tim.o
+    0x08001bf8   0x08001bf8   0x00000008   Code   RO          447    i.NMI_Handler       stm32f0xx_it.o
+    0x08001c00   0x08001c00   0x00000002   Code   RO          448    i.PendSV_Handler    stm32f0xx_it.o
+    0x08001c02   0x08001c02   0x00000002   Code   RO          449    i.SVC_Handler       stm32f0xx_it.o
+    0x08001c04   0x08001c04   0x00000024   Code   RO          238    i.SetStatus         main.o
+    0x08001c28   0x08001c28   0x00000008   Code   RO          450    i.SysTick_Handler   stm32f0xx_it.o
+    0x08001c30   0x08001c30   0x00000052   Code   RO          239    i.SystemClock_Config  main.o
+    0x08001c82   0x08001c82   0x00000002   Code   RO         3109    i.SystemInit        system_stm32f0xx.o
+    0x08001c84   0x08001c84   0x00000018   Code   RO          451    i.TIM6_DAC_IRQHandler  stm32f0xx_it.o
+    0x08001c9c   0x08001c9c   0x00000094   Code   RO         2238    i.TIM_Base_SetConfig  stm32f0xx_hal_tim.o
+    0x08001d30   0x08001d30   0x00000024   Code   RO         3158    i.__0vsprintf       mc_p.l(printfa.o)
+    0x08001d54   0x08001d54   0x0000002e   Code   RO         3219    i.__ARM_clz         mf_p.l(depilogue.o)
+    0x08001d82   0x08001d82   0x00000030   Code   RO          805    i.__ARM_common_ll_muluu  stm32f0xx_hal_rcc.o
+    0x08001db2   0x08001db2   0x00000002   PAD
+    0x08001db4   0x08001db4   0x00000044   Code   RO         1683    i.__NVIC_SetPriority  stm32f0xx_hal_cortex.o
+    0x08001df8   0x08001df8   0x0000000e   Code   RO         3223    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x08001e06   0x08001e06   0x00000002   Code   RO         3224    i.__scatterload_null  mc_p.l(handlers.o)
+    0x08001e08   0x08001e08   0x0000000e   Code   RO         3225    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x08001e16   0x08001e16   0x00000002   PAD
+    0x08001e18   0x08001e18   0x00000174   Code   RO         3159    i._fp_digits        mc_p.l(printfa.o)
+    0x08001f8c   0x08001f8c   0x000006f0   Code   RO         3160    i._printf_core      mc_p.l(printfa.o)
+    0x0800267c   0x0800267c   0x00000020   Code   RO         3161    i._printf_post_padding  mc_p.l(printfa.o)
+    0x0800269c   0x0800269c   0x0000002c   Code   RO         3162    i._printf_pre_padding  mc_p.l(printfa.o)
+    0x080026c8   0x080026c8   0x0000000a   Code   RO         3164    i._sputc            mc_p.l(printfa.o)
+    0x080026d2   0x080026d2   0x00000002   PAD
+    0x080026d4   0x080026d4   0x000000c4   Code   RO          240    i.exec              main.o
+    0x08002798   0x08002798   0x0000003c   Code   RO          241    i.initialisation    main.o
+    0x080027d4   0x080027d4   0x00000010   Code   RO           13    i.lcd_bl_on         stm32driverlcd.o
+    0x080027e4   0x080027e4   0x0000006c   Code   RO           14    i.lcd_checkbf       stm32driverlcd.o
+    0x08002850   0x08002850   0x00000024   Code   RO           15    i.lcd_clearLine     stm32driverlcd.o
+    0x08002874   0x08002874   0x0000001c   Code   RO           17    i.lcd_gotoxy        stm32driverlcd.o
+    0x08002890   0x08002890   0x00000174   Code   RO           18    i.lcd_init          stm32driverlcd.o
+    0x08002a04   0x08002a04   0x00000014   Code   RO           19    i.lcd_put_string_ram  stm32driverlcd.o
+    0x08002a18   0x08002a18   0x0000001e   Code   RO           20    i.lcd_putc          stm32driverlcd.o
+    0x08002a36   0x08002a36   0x00000002   PAD
+    0x08002a38   0x08002a38   0x00000038   Code   RO           21    i.lcd_send_byte     stm32driverlcd.o
+    0x08002a70   0x08002a70   0x00000030   Code   RO           22    i.lcd_send_nibble   stm32driverlcd.o
+    0x08002aa0   0x08002aa0   0x00000060   Code   RO          242    i.main              main.o
+    0x08002b00   0x08002b00   0x0000001e   Code   RO           23    i.printf_lcd        stm32driverlcd.o
+    0x08002b1e   0x08002b1e   0x00000002   PAD
+    0x08002b20   0x08002b20   0x00000034   Code   RO          243    i.readInput         main.o
+    0x08002b54   0x08002b54   0x00000003   Data   RO           24    .constdata          stm32driverlcd.o
+    0x08002b57   0x08002b57   0x00000010   Data   RO         3110    .constdata          system_stm32f0xx.o
+    0x08002b67   0x08002b67   0x00000001   PAD
+    0x08002b68   0x08002b68   0x00000020   Data   RO         3221    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002b80, Size: 0x000004c0, Max: 0x00002000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002b88, Size: 0x000004c0, Max: 0x00002000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002b80   0x00000001   Data   RW           25    .data               stm32driverlcd.o
-    0x20000001   0x08002b81   0x00000003   PAD
-    0x20000004   0x08002b84   0x0000001c   Data   RW          244    .data               main.o
-    0x20000020   0x08002ba0   0x00000001   Data   RW          245    .data               main.o
-    0x20000021   0x08002ba1   0x00000001   Data   RW          246    .data               main.o
-    0x20000022   0x08002ba2   0x00000001   Data   RW          452    .data               stm32f0xx_it.o
-    0x20000023   0x08002ba3   0x00000001   PAD
-    0x20000024   0x08002ba4   0x0000000c   Data   RW          868    .data               stm32f0xx_hal.o
-    0x20000030   0x08002bb0   0x00000004   Data   RW         3112    .data               system_stm32f0xx.o
+    0x20000000   0x08002b88   0x00000001   Data   RW           25    .data               stm32driverlcd.o
+    0x20000001   0x08002b89   0x00000003   PAD
+    0x20000004   0x08002b8c   0x0000001c   Data   RW          244    .data               main.o
+    0x20000020   0x08002ba8   0x00000001   Data   RW          245    .data               main.o
+    0x20000021   0x08002ba9   0x00000001   Data   RW          246    .data               main.o
+    0x20000022   0x08002baa   0x00000001   Data   RW          452    .data               stm32f0xx_it.o
+    0x20000023   0x08002bab   0x00000001   PAD
+    0x20000024   0x08002bac   0x0000000c   Data   RW          868    .data               stm32f0xx_hal.o
+    0x20000030   0x08002bb8   0x00000004   Data   RW         3112    .data               system_stm32f0xx.o
     0x20000034        -       0x00000040   Zero   RW          373    .bss                adc.o
     0x20000074        -       0x00000048   Zero   RW          411    .bss                tim.o
-    0x200000bc   0x08002bb4   0x00000004   PAD
+    0x200000bc   0x08002bbc   0x00000004   PAD
     0x200000c0        -       0x00000400   Zero   RW            1    STACK               startup_stm32f051x8.o
 
 
@@ -1757,27 +1757,27 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       192         18          0          0         64       1567   adc.o
-       304         20          0          0          0        983   gpio.o
-      1140        140          0         30          0      10295   main.o
-        28          8        188          0       1024        620   startup_stm32f051x8.o
-        88          4          0          0          0        987   stm32delays.o
-       744         52          3          1          0     312275   stm32driverlcd.o
-       164         30          0         12          0       8093   stm32f0xx_hal.o
-      1342         44          0          0          0       7709   stm32f0xx_hal_adc.o
-       176          0          0          0          0       1358   stm32f0xx_hal_adc_ex.o
-       148         24          0          0          0      10281   stm32f0xx_hal_cortex.o
-       348         24          0          0          0       2332   stm32f0xx_hal_gpio.o
-        40          6          0          0          0        778   stm32f0xx_hal_msp.o
-      1422         88          0          0          0       5537   stm32f0xx_hal_rcc.o
-       672         38          0          0          0       6869   stm32f0xx_hal_tim.o
-       100         12          0          0          0       2385   stm32f0xx_hal_tim_ex.o
-        46          8          0          1          0       2727   stm32f0xx_it.o
-         2          0         16          4          0       1055   system_stm32f0xx.o
-       128         22          0          0         72       1514   tim.o
+       192         18          0          0         64       1583   adc.o
+       304         20          0          0          0        991   gpio.o
+      1148        140          0         30          0      10363   main.o
+        28          8        188          0       1024        624   startup_stm32f051x8.o
+        88          4          0          0          0        991   stm32delays.o
+       744         52          3          1          0     312359   stm32driverlcd.o
+       164         30          0         12          0       8125   stm32f0xx_hal.o
+      1342         44          0          0          0       7749   stm32f0xx_hal_adc.o
+       176          0          0          0          0       1366   stm32f0xx_hal_adc_ex.o
+       148         24          0          0          0      10301   stm32f0xx_hal_cortex.o
+       348         24          0          0          0       2344   stm32f0xx_hal_gpio.o
+        40          6          0          0          0        786   stm32f0xx_hal_msp.o
+      1422         88          0          0          0       5565   stm32f0xx_hal_rcc.o
+       672         38          0          0          0       6909   stm32f0xx_hal_tim.o
+       100         12          0          0          0       2401   stm32f0xx_hal_tim_ex.o
+        46          8          0          1          0       2755   stm32f0xx_it.o
+         2          0         16          4          0       1067   system_stm32f0xx.o
+       128         22          0          0         72       1530   tim.o
 
     ----------------------------------------------------------------------
-      7102        538        240         52       1164     377365   Object Totals
+      7110        538        240         52       1164     377809   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         18          0          1          4          4          0   (incl. Padding)
 
@@ -1832,15 +1832,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     10896        680        240         52       1164     375201   Grand Totals
-     10896        680        240         52       1164     375201   ELF Image Totals
-     10896        680        240         52          0          0   ROM Totals
+     10904        680        240         52       1164     375645   Grand Totals
+     10904        680        240         52       1164     375645   ELF Image Totals
+     10904        680        240         52          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                11136 (  10.88kB)
+    Total RO  Size (Code + RO Data)                11144 (  10.88kB)
     Total RW  Size (RW Data + ZI Data)              1216 (   1.19kB)
-    Total ROM Size (Code + RO Data + RW Data)      11188 (  10.93kB)
+    Total ROM Size (Code + RO Data + RW Data)      11196 (  10.93kB)
 
 ==============================================================================
 

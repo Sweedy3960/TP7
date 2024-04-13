@@ -56,7 +56,8 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+uint16_t ConvAdcMilliVolt(uint16_t nLsb);
+char ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */);
 typedef enum {INIT,EXEC,IDLE}e_States;
 void readInput(char *tb_portEntree);
 void initialisation(void);
