@@ -197,6 +197,7 @@ void SetStatus(void)
 			break;
 		case EXEC:
 			*pt_state = IDLE;
+			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
 			break;
 		case IDLE:
 			*pt_state = EXEC;
@@ -308,6 +309,7 @@ void InputActions(char *tb_portEntree)
 					//selon létat du flag allume led 0 ou éteind toutes
 					if(*pt_firstTime){
 					GPIOC -> ODR |= (LEDS);
+					*pt_digit=1;
 					}
 					else{
 					GPIOC -> ODR &= ~(LED0);
@@ -536,6 +538,7 @@ int main(void)
 				initialisation();
 				break;
 			case EXEC:			
+				
 				exec(tb_portEntree,str_V);
 				break;
 			case IDLE:

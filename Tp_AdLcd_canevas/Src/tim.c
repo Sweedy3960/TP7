@@ -19,7 +19,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "tim.h"
-#include "stm32f0xx_hal_tim.h"
 
 /* USER CODE BEGIN 0 */
  

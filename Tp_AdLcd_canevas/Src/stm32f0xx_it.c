@@ -60,7 +60,6 @@
 
 /* External variables --------------------------------------------------------*/
 extern TIM_HandleTypeDef htim6;
-
 /* USER CODE BEGIN EV */
 bool flag5Ms =false;
 /* USER CODE END EV */
@@ -149,7 +148,6 @@ void SysTick_Handler(void)
   */
 void TIM6_DAC_IRQHandler(void)
 {
-	//static 	uint8_t status= INIT; 
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
 	
 	//utiliser pour tester la boucle 
