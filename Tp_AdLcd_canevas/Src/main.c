@@ -76,7 +76,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 // ----------------------------------------------------------------
-// Conversion tension de LSB en mV. Utilise la variable globale "valVref_mV"
+// Conversion tension de LSB en mV. Itilise la variable globale "valVref_mV"
 // 0 -> 0 mV
 // 4095 -> 3300 mV
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
@@ -232,7 +232,6 @@ void InputActions(char *tb_portEntree)
 		char edgeDown =0;
 	  uint32_t a=2;
 		
-		uint16_t tb_leds[4] = {LED0,LED1,LED2,LED3};
 		
 		//balayage du tableau 
 		for (i=0; i<_500MSEC; i++ )
