@@ -58,7 +58,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN EFP */
 
 typedef enum {INIT,EXEC,IDLE}e_States;
-char readInput(char *tb_portEntree);
+void readInput(char *tb_portEntree);
 void initialisation(void);
 void setStatus(void);
 void exec(char *tb_portEntree,char *str_V);
@@ -133,6 +133,8 @@ void exec(char *tb_portEntree,char *str_V);
 #define _50MSEC 10
 #define _200MSEC 40
 #define _500MSEC 100
+#define ADCMAXVAL 4096
+
 #define LEDS 0x00F0
 #define LED0 0x0010
 #define LED1 0x0020

@@ -61,6 +61,7 @@ int8_t *pt_digit  = &digit;
 bool firstTime = true;
 bool *pt_firstTime=&firstTime;
 bool flagCalibrage = false;
+
 bool *pt_flagCalibrage=&flagCalibrage;
 uint16_t calibrationValue = 3300;
 /* USER CODE END PV */
@@ -81,7 +82,15 @@ void SystemClock_Config(void);
 uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 {
 		//conversion du nombre de pas en mV
-		return ((nLsb*8)/10);
+	
+		//modif calcul pour utilisation de val ref + pas d'utilisation de float donc * 100 rester avec resultats entier 
+		// engendre une erreur (apres la , dans le calcul)
+		return ((((((valVref_mV*100)/ADCMAXVAL))*nLsb))/100);
+	
+	
+	
+	
+		//return ((nLsb*8)/10);
 }
 
 // ----------------------------------------------------------------
@@ -91,7 +100,7 @@ uint16_t ConvAdcMilliVolt(uint16_t nLsb)
 //  selon le nb de digits demandés.
 void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STRUCTURE *** */)
 {	
-	static int tableau[4] = {0,0,0,0};
+  int tableau[4] = {0,0,0,0};
 	
 	// Remplir le tableau avec les chiffres du nombre, en partant de la fin
 	for (int i = 3; i >= 0; i--)
@@ -140,6 +149,7 @@ uint16_t Adc_read(uint8_t chNr)
 
 
 void SetStatus(void)
+//Cette fonction change l'état de la machine lors de son appel
 {
 	
 	switch (*pt_state)
@@ -158,38 +168,53 @@ void SetStatus(void)
 	}
 }
 void GetTimeFlag(char *tb_portEntree)
+//cette fonction vérifie si le flag de 5ms est actif pour calculer les timmings demander 
+//de plus la lecture des entré est faite lorsque que le flag est actif ce qui permet d'avoir 
+//une base de temps pour les echantillons du buffer d'entrée au détriment du temps de réaction
 {
 	static bool InitialisationHasOccured = false;
 	static uint16_t cntTime =0;
-	
+	//test du flag
 	if(flag5Ms)
 	{
+		//incrémetn compteur de temps 
 		cntTime++;
+		//si le flag d'initialisatione a eu lieu  est actif 
 		if (InitialisationHasOccured)
 		{
+			// le temps a compter est 50ms
 			if (cntTime>=_50MSEC)
 			{
+				//appel de la fonction pour changer d'état 
 				SetStatus();
+				//remise à 0 du cnt de temps
 				cntTime=0;
 			}
 		}
 		else
 		{	
+			//autrement l'initialisation dure 3s
 			if (cntTime>=_3SEC)
 			{
+				//appel de la fonction pour changer d'état 
 				SetStatus();
+				//remise à 0 du cnt de temps
 				cntTime=0;
+				//set du flag d'initialisatione a eu lieu : actif
 				InitialisationHasOccured=true;
 			}
 		}
+		//appel de la fonction de lecture d'entrée
 		readInput(tb_portEntree);
 	}
-	
+	//remise à 0 du flag te temps
 	flag5Ms=false; 
 	
 }
 void initialisation(void)
+//Affichage durant l'initialisation partie LCD 
 {
+	
 	printf_lcd("TP AdLcd <2024>");
 	lcd_gotoxy(1,2);
 	printf_lcd("Clauzel aymeric");
@@ -205,7 +230,7 @@ void InputActions(char *tb_portEntree)
 		char cntflanc=0;
 		char edgeUp = 0;
 		char edgeDown =0;
-	
+	  uint32_t a=2;
 		
 		uint16_t tb_leds[4] = {LED0,LED1,LED2,LED3};
 		
@@ -240,58 +265,86 @@ void InputActions(char *tb_portEntree)
 			switch (~(tb_portEntree[edgeDown])&0x0F)
 			{
 				case S2 :
-					
+					//change l'état du flag pour la deuxieme ligne / premier appuis sur btn0
 					*pt_firstTime =!(*pt_firstTime);
-				
+					//selon létat du flag allume led 0 ou éteind toutes
 					if(*pt_firstTime){
-					GPIOC -> ODR |= (LED0);
+					GPIOC -> ODR |= (LEDS);
 					}
 					else{
 					GPIOC -> ODR &= ~(LED0);
 					}
-					
+					//pas besoin de tester mais chaque appuis fait sortir de la calibration 
 					flagCalibrage = false;
 					
 					break;
 					
 				case S3 :
-					
+					//si en mode calib
 					if(flagCalibrage)
 					{
+						//décrémente
 						calibrationValue -=5;
 					
 					}
 					else
+						
 					{
-						GPIOC -> ODR |= tb_leds[(*pt_digit-1)];
-				
-						if(*pt_digit>1)
+						//si ligne 2 active 
+						if (!*pt_firstTime)
 						{
-							*pt_digit -= 1 ;
+							//test limites valeurs digits
+							if(*pt_digit>1)
+							{
+								//décrémente 
+								*pt_digit -= 1 ;
+								//************************************
+								//traitement de leds 
+								for(int i=1;i<=*pt_digit;i++)
+								{
+									a *=2;
+								}
+								GPIOC -> ODR |= (((a)/2)<<4);							
+							}
 						}
 					}
 					
 					break;
 					
 				case S4 :
-					
+					//si en mode calib
 					if(flagCalibrage)
 					{
+						//incrémente
 						calibrationValue +=5;
 					
 					}
 					else
 					{
-						if(*pt_digit < 4)
+						//si ligne 2 active 
+						if(!*pt_firstTime)
 						{
-							*pt_digit += 1 ;
-						}			
-						GPIOC -> ODR &= ~tb_leds[(*pt_digit-1)];
+							//test limites valeurs digits
+							if(*pt_digit < 4)
+							{
+								//incrémente
+								*pt_digit += 1 ;
+								//************************************
+								//traitement de leds 
+								for(int i=1;i<*pt_digit;i++)
+								{
+									a *=2;
+								}
+								GPIOC -> ODR &= ~(((a)/2)<<4);
+							}			
+						}
 					}
 					break;
 				
 				case S5 :
+					//pas besoin de tester mais chaque appuis fait sortir de la calibration 
 					flagCalibrage = false;
+					//set la nouvelle valeure de calib 
 					valVref_mV = calibrationValue;
 					break;
 
@@ -302,12 +355,17 @@ void InputActions(char *tb_portEntree)
 		}
 		else
 		{
+			//test si un le premer flanc lors de l'appuis est apparus mais pas le deuxieme 
+			//--> plus de 500ms appuyer  
 			if(edgeUp && !edgeDown)
 			{
+				//test pour savoir quelle touche 
 			   switch (~(tb_portEntree[edgeDown])&0x0F)
 				 {
 						case S2 :
+							//"active la calibration "
 							flagCalibrage = true;
+							//reset de la valeur de calibration
 							calibrationValue = 3300;
 							break;
 				 }
@@ -315,13 +373,16 @@ void InputActions(char *tb_portEntree)
 		}
 	
 }
-char readInput(char *tb_portEntree)
+void readInput(char *tb_portEntree)
+// cette fonction remplis toute les 5ms une case du tableau avec le port d'entrée
+//une fois plein le tableau est annalyser, la taille du tableau est faite pour les limites cdc 500ms
 {
 	
 		static uint16_t i=0;
-		
+		//test pour pas déborder 
 		if(i<=_500MSEC)
 		{
+			//remplissage du tableau 
 			tb_portEntree[i+1] = tb_portEntree[i];
 			tb_portEntree[i] = GPIOC-> IDR & 0x0F;	
 			i++;
@@ -332,32 +393,32 @@ char readInput(char *tb_portEntree)
 			//Buffer plein annalyse
 			InputActions(tb_portEntree);
 		}
-		
-		
-	return 0; 
-
 }
 
 
 void exec(char *tb_portEntree,char *str_V)
 {
 				static uint16_t valueAdc;
-				
+				//clean de la ligne 
 				lcd_clearLine(2);
 				lcd_gotoxy(1,0);
+				//lecture de lla valeure du potentiometre
 				valueAdc=Adc_read(0);
+				//affichage de la valeur
 				printf_lcd("AI0 :%d / %d mv ",valueAdc,ConvAdcMilliVolt(valueAdc));
-				//btnPushed = readInput(tb_portEntree);
-				//InputActions(tb_portEntree);
-				
+			
+				//test si ligne 2 inactive
 				if (*pt_firstTime)
 				{
+					//nettoye la ligne
 					lcd_clearLine(2);
 				}
 				else
 				{
+					//si le mode calibration est actif
 					if(flagCalibrage)
 					{
+						//-----affichage mode calib*********
 						lcd_gotoxy(1,0);
 						printf_lcd("*** Calibration *** ");
 						lcd_gotoxy(1,2);
@@ -365,17 +426,15 @@ void exec(char *tb_portEntree,char *str_V)
 					}
 					else
 					{
-					
+						//-----affichage mode normal*********
 						ConvMilliVoltVolt(ConvAdcMilliVolt(valueAdc), *pt_digit, str_V); // Exemple d'utilisation
 						lcd_clearLine(2);
 						lcd_gotoxy(1,2);
 						printf_lcd("%s V",str_V);
 					}
 				}
-				
+				//appel fct pour repartir en IDLE
 				SetStatus();
-				
-
 }
 
 
@@ -446,6 +505,7 @@ int main(void)
 			default: 
 				break;
 		}
+		//appel fct pour base de temps et donc lecture des entrée d'ou le tableau en paramètres
 		GetTimeFlag(tb_portEntree);	
   }
   /* USER CODE END 3 */
