@@ -151,16 +151,16 @@ char ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 	{
 		// Insérer le point décimal après le premier chiffre
 		str_V[1] = '.';
-		// Remplir les chiffres après la virgule décimale -1 pour le premiere chiffre
-		for (int i = 1; i <= (nDigits - 1); ++i)
+		// Remplir les chiffres 
+		for (int i = 1; i <= (nDigits); ++i)
 		{
 			str_V[i + 1] = '0' + tableau[i]; // i+1 pour prendre en compte le point décimal
 		}
 	}
 
 	// Ajouter le caractère nul pour terminer la chaîne de caractere 
-	//+2 pour la virgule et le dernier caractere
-	str_V[nDigits + 2] = '\0';
+	//+1 le dernier caractere
+	str_V[nDigits + 1] = '\0';
 	return 0;
 }
 
@@ -255,7 +255,8 @@ void initialisation(void)
 	
 	printf_lcd("TP AdLcd <2024>");
 	lcd_gotoxy(1,2);
-	printf_lcd("Clauzel aymeric");
+	printf_lcd("ACL NBN");
+	lcd_gotoxy(1,1);
 	lcd_bl_on();
 }
 
