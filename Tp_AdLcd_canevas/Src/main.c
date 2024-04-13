@@ -102,7 +102,8 @@ void ConvMilliVoltVolt(uint16_t u_mV, uint8_t nDigits, char* str_V /* *** OU STR
 		{
 			// Report si nécessaire
 			tableau[index] = 0;
-			tableau[--index]++;
+			index--;
+			tableau[index]++;
 		}
 
 		// Gérer le cas où le premier chiffre devient 10 après l'arrondi
