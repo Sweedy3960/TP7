@@ -188,6 +188,7 @@ void SetStatus(void)
 	switch (*pt_state)
 	{
 		case INIT:
+			GPIOC -> ODR |= LEDS;
 			*pt_state = EXEC;
 			break;
 		case EXEC:
@@ -248,7 +249,7 @@ void GetTimeFlag(char *tb_portEntree)
 void initialisation(void)
 //Affichage durant l'initialisation partie LCD 
 {
-	
+	GPIOC -> ODR &= ~LEDS;
 	printf_lcd("TP AdLcd <2024>");
 	lcd_gotoxy(1,2);
 	printf_lcd("ACL NBN");
@@ -305,11 +306,11 @@ void InputActions(char *tb_portEntree)
 					if(*pt_firstTime){
 					//si ligne 2 désactivée remet digit a 1
 					GPIOC -> ODR |= (LEDS);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 					*pt_digit=1;
-=======
-					*pt_digit =1;
->>>>>>> 50e94f66f29a522b5688fe25c3a407d936185a69
+//=======
+					//*pt_digit =1;
+//>>>>>>> 50e94f66f29a522b5688fe25c3a407d936185a69
 					}
 					else{
 					GPIOC -> ODR &= ~LED0;
